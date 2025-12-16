@@ -34,6 +34,7 @@ public class uzd2 {
 					break;
 				} else {
 					laimigoSteks.clear();
+					Laiks = System.currentTimeMillis();
 				}
 			} else {
 				laimigie = Long.toString(Laiks);
