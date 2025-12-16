@@ -17,7 +17,7 @@ public class uzd2 {
 		String izvele = null, laimigie = "";
 		Stack<Integer> steks = new Stack<>();
 		Stack<Integer> laimigoSteks = new Stack<>();
-		String [] darbibas = {"Veikt izlozi","Apskatīt visus skaitļus", "Apskatīt laimīgos skaitļus", "Apturēt"};
+		String [] darbibas = {"Veikt izlozi","Apskatīt pedejas izlozes laiku", "Apskatīt visus skaitļus", "Apskatīt laimīgos skaitļus", "Apturēt"};
 	    do {
 		izvele = (String)JOptionPane.showInputDialog(null, "Izvēlies darbību", "Darbību saraksts", JOptionPane.INFORMATION_MESSAGE, null, darbibas, darbibas[0]);
 		if (izvele == null) {
@@ -48,6 +48,19 @@ public class uzd2 {
 				laimigoSteks.push(laimigais);
 				
 				
+			}
+			break;
+		case "Apskatīt pedejas izlozes laiku":
+			if (laimigoSteks.size() == 0) {
+				JOptionPane.showMessageDialog(null, "Vēl nav veikta izloze!", "Kļūda", JOptionPane.ERROR_MESSAGE);
+			} else {
+				java.time.LocalDateTime dateTime = java.time.LocalDateTime
+						.ofEpochSecond(Long.parseLong(laimigie) / 1000, 0, java.time.ZoneOffset.UTC);
+				java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter
+						.ofPattern("dd-MM-yyyy HH:mm:ss");
+				String formattedDateTime = dateTime.format(formatter);
+				JOptionPane.showMessageDialog(null, "Pēdējās izlozes laiks ir: " + formattedDateTime, "Paziņojums",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 			break;
 		case "Apskatīt visus skaitļus":
